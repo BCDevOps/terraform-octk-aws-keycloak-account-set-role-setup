@@ -33,3 +33,9 @@ variable "project_accounts" {
 	type = map(any)
 	description = "A map of the project accounts (with structure matching output of aws_organizations_account) for which we will be creating roles and IDP resources, keyed by the name of the envrionment."
 }
+
+variable "workload_account_roles" {
+	type = map(string)
+	description = "A mapping of role names to be created to (existing) policy arns."
+	default = { }
+}
