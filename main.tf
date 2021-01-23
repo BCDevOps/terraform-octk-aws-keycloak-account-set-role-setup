@@ -19,10 +19,7 @@ provider "keycloak" {
 }
 
 locals {
-	workload_account_roles = {
-		"BCGOV_WORKLOAD_admin_${var.kc_realm}": "arn:aws:iam::aws:policy/AdministratorAccess"
-		"BCGOV_WORKLOAD_readonly_${var.kc_realm}": "arn:aws:iam::aws:policy/job-function/ViewOnlyAccess"
-	}
+	workload_account_roles = var.workload_account_roles
 
 	trusted_login_sources = var.custom_login_url == null ? [
 		"https://signin.aws.amazon.com/saml"] : [
