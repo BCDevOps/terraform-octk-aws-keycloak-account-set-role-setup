@@ -40,6 +40,11 @@ variable "workload_account_role_config" {
 	type = list(map(string))
 }
 
+variable "tenancy_root_group_name" {
+	type = string
+	default = "Project Team Groups"
+}
+
 variable "project_spec" {
 	description = "List of projects/(accounts) that product teams' workloads run within."
 	type = object({
