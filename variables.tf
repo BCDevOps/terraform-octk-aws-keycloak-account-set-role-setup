@@ -1,11 +1,11 @@
 variable "kc_realm" {
 	description = "KeyCloak realm where terraform client has been created and where users/groups to be created/manipulated exist."
-	type        = string
+	type = string
 }
 
 variable "kc_terraform_auth_client_id" {
 	description = "Client ID of client that terraform will authenticate against in order to do its work."
-	type        = string
+	type = string
 }
 
 variable "kc_terraform_auth_client_secret" {
@@ -15,7 +15,7 @@ variable "kc_terraform_auth_client_secret" {
 
 variable "kc_iam_auth_client_id" {
 	description = "Client ID of client where KC roles corresponding to AWS roles will be created."
-	type        = string
+	type = string
 }
 
 variable "kc_base_url" {
@@ -37,5 +37,19 @@ variable "project_accounts" {
 variable "workload_account_roles" {
 	type = map(string)
 	description = "A mapping of role names to be created to (existing) policy arns."
-	default = { }
+	default = {}
 }
+
+variable "project_spec" {
+	description = "List of projects/(accounts) that product teams' workloads run within."
+	type = object({
+		identifier = string
+		name = string
+		tags = map(string)
+		accounts = list(object({
+			name = string
+			environment = string
+		}))
+	})
+}
+
